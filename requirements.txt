@@ -1,0 +1,2 @@
+questionary==2.0.1
+SQLAlchemy==2.0.23
