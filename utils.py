@@ -1,5 +1,5 @@
 import re, questionary, os
-from typing import List
+from typing import List, NoReturn
 
 from config import QUESTIONARY_SETTINGS, IF_DATA_IS_UKNOWN, DISPLAYED_BOOKS_CHOICES
 from database import books_db
@@ -15,7 +15,7 @@ def find_book_author(string: str):
     return re.findall(pattern, string, re.MULTILINE)[0]
 
 
-async def ask_book_details():
+async def ask_book_details() -> tuple:
     os.system("cls||clear")
     name = await questionary.text(
         "Введите имя книги: ", **QUESTIONARY_SETTINGS
@@ -37,7 +37,12 @@ async def ask_book_details():
     return name, author, description, genre
 
 
-async def display_books(all_books: List[tuple]):
+async def display_books(all_books: List[tuple]) -> NoReturn:
+    """Отобразить список книг
+
+    Args:
+        all_books (List[tuple]): Список книг
+    """
     os.system("cls||clear")
 
     formatted_books = [
