@@ -71,6 +71,5 @@ async def delete_book(book_name: str) -> NoReturn:
     async with AsyncSession() as session:
         obj = await session.execute(select(Book).where(Book.name == book_name))
         obj = obj.scalar_one()
-        print(obj)
         await session.delete(obj)
         await session.commit()
